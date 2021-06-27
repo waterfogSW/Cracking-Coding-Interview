@@ -58,3 +58,4 @@ OSGI(Open Service Gateway Initiative) 번들을 사용하여 코드를 배포 �
 하지만, 이런 부분들은 자동화 도구를 사용하면 해결 할 수 있습니다.
 끝으로, 마이크로 서비스는 벤더사 중심이 아닌 서비스사 중심의 아키텍처이고 이미 글로벌 플레이어에 의해 검증이 되어 있습니다.
 
+[출처: https://giljae.medium.com/%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-microservices-architecture-%EC%9D%98-%EC%9E%A5%EC%A0%90%EA%B3%BC-%EB%8B%A8%EC%A0%90-7c45615cfe1a]
