@@ -3,7 +3,8 @@
 Hash table은 key, value쌍을 통해 효율적인 look up을 제공하는 자료구조입니다.
 
 <p align=center>
-<img src = https://user-images.githubusercontent.com/28651727/123536530-b992b380-d765-11eb-9b64-0652e5121121.png>
+<img src = https://user-images.githubusercontent.com/28651727/123536530-b992b380-d765-11eb-9b64-0652e5121121.png><br>
+출처 : Cracking Coding interview
 <p align=center>
 
 ### implementation
