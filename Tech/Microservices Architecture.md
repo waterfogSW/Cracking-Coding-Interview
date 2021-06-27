@@ -36,6 +36,7 @@ Y축이 가장 중요하고 우리가 눈여겨 봐야할 대상입니다. 이 �
 <p align= center>
 <img src=https://user-images.githubusercontent.com/28651727/123539865-c2d84c00-d776-11eb-97b8-66e4d7c10c39.png>
 </p>
+
 ## Advantage of Microservice Architecture
 벤더사 중심의 SOA에 비해서 마이크로서비스는 Amazon, Netflix, eBay와 같은 글로벌 서비스 플레이어가 사용할 만큼 강력합니다.
 - Improves fault isolation : 단일 모듈의 장애에 대해 전체 어플리케이션은 크게 영향을 받지 않습니다.
@@ -48,6 +49,7 @@ Y축이 가장 중요하고 우리가 눈여겨 봐야할 대상입니다. 이 �
 AWS와 같은 IaaS업체의 VM을 이용하여 마이크로 서비스를 배포할 수 있지만 작은 단위의 마이크로 서비스는 VM의 리소스를 전부 활용 하지 못해 비용 효율성을 저하 시킬 수 있습니다. 따라서 컨테이너 기반으로 배포를 하는 것이 유리합니다.
 
 OSGI(Open Service Gateway Initiative) 번들을 사용하여 코드를 배포 할 수도 있지만, 이 경우에는 management and isolation tradeoff와 관련된 단점이 존재합니다.
+
 ## Disadvantage of Microservice Architecture
 아래는 마이크로 서비스 설계와 관련된 잠재적인 약점에 대한 부분입니다.
 - 분산 시스템 개발은 일반 개발보다 복잡합니다. 모든 것이 독립적인 서비스이기 때문에 각 모듈간의 인터페이스를 신중하게 처리 해야 합니다. 서비스중 하나가 응답하지 않게 될 경우에 대한 방어코드도 작성해야 합니다. 호출 대기 시간이 발생하게 되면 복잡한 상황이 발생할 수 있습니다.
