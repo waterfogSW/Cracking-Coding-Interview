@@ -2,6 +2,10 @@
 ## Hash tables
 Hash table은 key, value쌍을 통해 효율적인 look up을 제공하는 자료구조입니다.
 
+<p align=center>
+<img src = https://user-images.githubusercontent.com/28651727/123536530-b992b380-d765-11eb-9b64-0652e5121121.png>
+<p align=center>
+
 ### implementation
 1. key에 대한 hash code(int or long)를 계산합니다.  
 key는 무한하지만 자료형(int)의 크기는 유한하기에 동일한 키값에 대해 같은 hash code를 가질 수 있습니다.
