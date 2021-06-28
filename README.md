@@ -12,7 +12,6 @@
 - Stack/Queue
 - DFS/BFS
 - Sorting
----
 - Dynamic Programming
 - Greedy
 
