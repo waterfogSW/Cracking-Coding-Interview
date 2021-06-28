@@ -1,3 +1,5 @@
+/* 프로그래머스 : 코딩테스트 연습 > 완전탐색 > 모의고사 */
+/* 완전 탐색 문제이나, 핵심은 finding multiple max elements index in vector(list) */
 #include <string>
 #include <vector>
 #include <algorithm>
