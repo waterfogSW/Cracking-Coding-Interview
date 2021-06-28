@@ -4,8 +4,17 @@
 - Algorithm
 - Operating Systems
 - Network
+- Database
 
 ## Coding Test
+- Brute Force
+- Hash
+- Stack/Queue
+- DFS/BFS
+- Sorting
+---
+- Dynamic Programming
+- Greedy
 
 ## Tech Stack 
 - Microservice Architecture
