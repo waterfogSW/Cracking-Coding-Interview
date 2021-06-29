@@ -27,13 +27,29 @@
 - Tend to write synchronously : Application must wait for the write to complete
 
 ## 3. Log-structured file systems
-Fundamental Idea
+**Fundamental Idea**
 - Improve write performance by buffering a sequence of file system changes in the file cache and then writing all the changes to disk sequentially in a single disk **write operation**.  
   - The **write operation** include file data blocks, attributes, index blocks, directories, etc(used to manage the file system)
 - LFS can convert **many small synchronous random writes** of traditional file systems into **large asynchronous sequential transfers** that can utilize nealy 100% of the raw disk bandwidth
 
-Issues 
+**Issues** 
 - How to retrieve information from the log
 - How to manage the free space on disk so that large extents of free space are always available for writing new data
 
 ### 3.1 File location and reading
+- In Sprite LFS inodes doesn't placed at fixed positions; **written to the log**
+- To maintain the current location of each inode use data structure called `inode map`
+- Fixed checkpoint region on each disk identifies the locations of all the inode map blocks.
+
+### 3.2 Free space management : Segments
+- By the time the log reaches the end of the disk the free space will have been fragmented into many small extents corresponding to the files that were deleted or overwritten
+
+Solution 1 : Threading
+- Leave the live data in place and thread the log trough the free extents.
+- Free space become severely fragmented, so that large contigous writes won't be possible and LFS won't be faster than traditional FS. 
+
+Solution 2 : Copying
+- Copy the live data out of the log in order toleave large free exents for writing. 
+- Long lived files will have to be copied in every pass of the log across the disk.
+
+Sprite LFS = threading + copying
