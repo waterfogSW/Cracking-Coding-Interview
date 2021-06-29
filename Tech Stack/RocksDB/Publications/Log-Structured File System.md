@@ -15,3 +15,9 @@
 - Disk performance depends on two components (Transfer bandwidth and access time).
 - Disk is not better than before compared with CPU.
 - 메인메모리의 용량이 증가함에 따라 더많은 양의 read requests와 write requests가 버퍼에 저장될 수 있게 되었다.
+
+### 2.2 Workloads
+- Small files usually result in small random disk I/Os, and the creation and deletion times for such files are often dominated by updates to file system `Metadata`
+- Large files I/O performance tends to be limited by the bandwidth of the I/O and memory subsystems. 
+- LSF에서는 작은 파일 접근의 효율화에 집중하고 있으며, 큰 파일의 경우 하드웨어의 대역폭 향상에 의존한다.
+- Fortunately, the techniques used in Sprite LFS **work well for large files as well as small ones**
