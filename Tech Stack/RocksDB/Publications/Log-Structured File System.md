@@ -21,3 +21,19 @@
 - Large files I/O performance tends to be limited by the bandwidth of the I/O and memory subsystems. 
 - LSF에서는 작은 파일 접근의 효율화에 집중하고 있으며, 큰 파일의 경우 하드웨어의 대역폭 향상에 의존한다.
 - Fortunately, the techniques used in Sprite LFS **work well for large files as well as small ones**
+
+### 2.3 Problems with existing file systems
+- Spread information around the disk in a way that causes too many samll accesses
+- Tend to write synchronously : Application must wait for the write to complete
+
+## 3. Log-structured file systems
+Fundamental Idea
+- Improve write performance by buffering a sequence of file system changes in the file cache and then writing all the changes to disk sequentially in a single disk **write operation**.  
+  - The **write operation** include file data blocks, attributes, index blocks, directories, etc(used to manage the file system)
+- LFS can convert **many small synchronous random writes** of traditional file systems into **large asynchronous sequential transfers** that can utilize nealy 100% of the raw disk bandwidth
+
+Issues 
+- How to retrieve information from the log
+- How to manage the free space on disk so that large extents of free space are always available for writing new data
+
+### 3.1 File location and reading
