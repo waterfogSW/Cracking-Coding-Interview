@@ -1,6 +1,6 @@
 # RocksDB
 
-## Reference
+## Publications
 
 - M. Rosenblum and J. Ousterhout, "The Design and Implementation of a Log-Structured File System", ACMToCS
 - C. Lee et al., "F2FS: A New File System for Flash Storage", FAST, 2015
