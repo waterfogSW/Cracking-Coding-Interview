@@ -78,3 +78,12 @@ Solution
 
 Write cost
 - Average amount of time the disk is busy per byte of new data written, including all the cleaning overheads
+- Write Cost = 1 : New data could be written at the **full** disk bandwidth is actually used for writing new data
+- Write Cost = 10 : Only **1/10 of disk's maximum bandwidth** is used for writing new data
+
+### 3.5 Simulation results
+
+Hot-and-Cold
+- Hot : selected 90% of the time
+- Cold : contains 90% of the files but selected only 10% of the time
+
