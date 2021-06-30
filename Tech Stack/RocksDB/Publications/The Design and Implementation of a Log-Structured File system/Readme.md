@@ -68,3 +68,13 @@ Problem
 Solution
 - writing `segment summary block`
   - file number + block number
+
+### 3.4 Segment Cleaning Policy
+**Issues**
+1. When should the segment cleaner execute
+2. How many segments should it clean at a time
+3. Which segments should be cleaned
+4. How should the live blocks be grouped when they are written
+
+Write cost
+- Average amount of time the disk is busy per byte of new data written, including all the cleaning overheads
