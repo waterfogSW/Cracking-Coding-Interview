@@ -53,3 +53,18 @@ Solution 2 : Copying
 - Long lived files will have to be copied in every pass of the log across the disk.
 
 Sprite LFS = threading + copying
+
+### 3.3 Segment cleaning mechanism
+Segment cleaning : Copying live data out of segment
+- Read number of segments into memory
+- Identify the live data
+- Write the live data back to smaller number of clean segments
+
+Problem
+- To update inode to point to the new locationi of the block
+  - Which blocks of each segment are live
+  - Which each block belongs and the position of the block within the file
+
+Solution
+- writing `segment summary block`
+  - file number + block number
