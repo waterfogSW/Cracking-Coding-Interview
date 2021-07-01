@@ -45,12 +45,5 @@ sstfile은 키를 쉽게 찾아보기 위해 모든 key-value 데이터들을 �
 | NodeJs,Python,Java C++,Go Api available to access the LevelDB | C++ and Java Api available. |
 
 ### Reference
-
+- RocksDB wiki : https://github.com/facebook/rocksdb/wiki
 - NoSQL vs Relational Databases : https://www.mongodb.com/scale/nosql-vs-relational-databases
-- Cao, Z., Dong, S., Vemuri, S., & Du, D. H. (2020). Characterizing, modeling, and benchmarking rocksdb key-value workloads at facebook. In 18th {USENIX} Conference on File and Storage Technologies ({FAST} 20) (pp. 209-223).
-- Dong, S., Callaghan, M., Galanis, L., Borthakur, D., Savor, T., & Strum, M. (2017, January). Optimizing Space Amplification in RocksDB. In CIDR (Vol. 3, p. 3).
-- 안미진, 오기환, 강운학, 이상원. (2014). RocksDB의 동기화 성능 비교. 한국정보과학회 학술발표논문집, (), 1516-1518.
-- 박연수, 오기환, 이종백, 강운학, 이상원. (2014). 동기화 옵션에 따른 RocksDB 성능 평가. 한국정보과학회 학술발표논문집, (), 1731-1733.
-- 신승연, 안미진, 이상원. (2017). RocksDB 컴팩션의 병합패턴 분석. 한국정보과학회 학술발표논문집, (), 1685-1687.
-- 김화정, 염헌영, 손용석. (2020). 고성능 컴퓨팅 시스템에서의 RocksDB 병렬성 증대를 위한 최적의 자원 할당 기법. 정보과학회 컴퓨팅의 실제 논문지, 26(3), 144-149.
-- 신승연, 안미진, 이상원. (2017). RocksDB 컴팩션시 파일 간 키 범위 중첩 분석. 한국정보과학회 학술발표논문집, (), 1726-1728.
