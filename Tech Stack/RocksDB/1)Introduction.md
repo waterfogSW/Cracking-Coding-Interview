@@ -22,6 +22,14 @@ NoSQL데이터 베이스에는 대표적으로 Amazon의 DynamoDB, MongoDB, Gith
 ## RocksDB Architecture
 ![image](https://user-images.githubusercontent.com/28651727/124079742-806b8380-da84-11eb-8aa4-fc306c967f27.png)
 
+RocksDB는 크게 Memtable, sstfile, logfile 3가지로 구성되어 있습니다. 
+
+쓰기요청이 발생하면 메모리의 임시버퍼인 Memtable에 쓰기작업을 진행합니다. Memtable이 꽉 차게되면 읽기 전용의 immutable memtable로 전환(switch)되고 새로운 Memtable을 생성하여 새로 들어오는 쓰기 요청을 진행합니다. 
+
+이후 Immutable memtable이 특정 개수에 도달하면 저장장치로 옮겨 sstfile로 저장하게 되는데 이러한 작업을 `flush`라고 합니다. 
+
+sstfile은 키를 쉽게 찾아보기 위해 모든 key-value 데이터들을 정렬아여 저장하고, 로그 구조의 병합 트리 구조를 가지고 저장 장치 내에서 컴팩션을 통해 업데이트 됩니다.
+
 ## Appendix
 ### Rocks DB vs LevelDB
 
