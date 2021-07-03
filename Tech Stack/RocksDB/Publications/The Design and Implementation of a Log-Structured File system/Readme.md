@@ -4,8 +4,9 @@
 - Disk Access time : CPU speeds have increased dramatically while disk access times have only improved slowly
 - Disk Traffic : Read requests are effectively satisfied as memory grows in size -> So **write request** is matter
 - Log라는 sequential structure에 디스크에 쓸 새로운 정보를 씀으로써 쓸위치를 찾는데 걸리는 시간을 줄인다.
+  - FFS가 read를 빨리하는것으로 목표를 두었다면, LFS는 write를 빨리 하는것을 목표로 한다.
 - Crash가 발생할 경우 log의 최근 위치를 참조하여 빠르게 장애를 복구할 수 있다.
-- 기존의 log개념을 도입한 FS는 log를 일시적으로 사용하였으나, Log-Structured FS는 데이터를 log에 영구적으로 저장한다.
+- 기존의 log개념을 도입한 FS는 log를 일시적으로 사용하였으나, LFS는 데이터를 log에 영구적으로 저장한다.
 - LSF에서는 데이터를 쓰기위해 항상 큰 free space가 필요한데 이를 segment라고 하며, segment cleaner를 통해 생성한다.
 - 새로운 데이터를 쓰는데 기존 Unix system의 disk's bandwidth가 5~10%에 불과한 반면 본 논문에서 사용된 Sprite LFS는 약 65~75%의 disk's bandwidth를 가진다.
 
@@ -80,6 +81,12 @@ Write cost
 - Average amount of time the disk is busy per byte of new data written, including all the cleaning overheads
 - Write Cost = 1 : New data could be written at the **full** disk bandwidth is actually used for writing new data
 - Write Cost = 10 : Only **1/10 of disk's maximum bandwidth** is used for writing new data
+
+Segment Summary Block
+- Identify which blocks of each segment ar live
+- Identify the file to which each block belongs and the position of the block within the file
+- File number and block number for the block
+- 
 
 ### 3.5 Simulation results
 
