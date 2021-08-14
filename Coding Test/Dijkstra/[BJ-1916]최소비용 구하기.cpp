@@ -40,7 +40,8 @@ int main() {
         }
     }
 
-    if(dist[dest] == INF) cout << "INF" << '\n';
-    else cout << dist[dest] << '\n';
-    
+    if (dist[dest] == INF)
+        cout << "INF" << '\n';
+    else
+        cout << dist[dest] << '\n';
 }
