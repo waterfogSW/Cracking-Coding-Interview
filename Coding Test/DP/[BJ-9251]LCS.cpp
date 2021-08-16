@@ -5,7 +5,7 @@ string str1, str2;
 int lcs[1000 + 1][1000 + 1];
 int _max;
 
-// 최장 공통 부분 문자열
+// 최장 공통 문자열
 void lc_string() {
     for (int i = 1; i <= str1.length(); i++) {
         for (int j = 1; j <= str2.length(); j++) {
