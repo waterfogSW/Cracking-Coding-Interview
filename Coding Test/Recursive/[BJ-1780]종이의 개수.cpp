@@ -6,7 +6,7 @@ int cnt[3];
 int arr[2187][2187];  // 2187 = 3 ^ 7
 
 void cut(int x, int y, int s) {
-    if (s == 0)return;
+    if (s == 0) return;
 
     int flag = 0;
     for (int i = y; i < y + s; i++) {
@@ -19,17 +19,11 @@ void cut(int x, int y, int s) {
     }
 
     if (flag == 1) {
-        cut(x, y, s / 3);
-        cut(x + (s / 3), y, s / 3);
-        cut(x + (s / 3) * 2, y, s / 3);
-
-        cut(x, y + (s / 3), s / 3);
-        cut(x + (s / 3), y + (s / 3), s / 3);
-        cut(x + (s / 3) * 2, y + (s / 3), s / 3);
-
-        cut(x, y + (s / 3) * 2, s / 3);
-        cut(x + (s / 3), y + (s / 3) * 2, s / 3);
-        cut(x + (s / 3) * 2, y + (s / 3) * 2, s / 3);
+        for (int i = x; i < x + s; i += s / 3) {
+            for (int j = y; j < y + s; j += s / 3) {
+                cut(i, j, s / 3);
+            }
+        }
     } else {
         cnt[arr[y][x] + 1]++;
     }
