@@ -1,61 +1,58 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int Find(int x, int *root) {
-    if (root[x] == x)
-        return x;
+int Find(int a, int *root) {
+    if (root[a] == a)
+        return a;
     else
-        return root[x] = Find(root[x], root);
+        return root[a] = Find(root[a], root);
 }
 
 void Union(int x, int y, int *root) {
     x = Find(x, root);
     y = Find(y, root);
-    if (x != y) root[y] = x;
-}
+    root[y] = x;
+}  // 같은 부모로 연결
 
 int solution(int n, int m) {
     int result = m;
-
-    int k;
-    cin >> k;
-
     int *root = new int[n + 1]();
-    vector<int> known;  // 진실을 아는 사람의 번호
-    auto *party = new int[m]();
+    int *party = new int[m]();
 
-    for (int i = 1; i < n + 1; i++) {
+    for (int i = 0; i < n + 1; i++) {
         root[i] = i;
     }
 
+    // 진실을 아는사람들
+    int k;
+    cin >> k;
+    int *known = new int[k]();
     for (int i = 0; i < k; i++) {
-        int tmp;
-        cin >> tmp;
-        known.push_back(tmp);
+        cin >> known[i];
     }
 
+    // 파티 정보 입력
     for (int i = 0; i < m; i++) {
-        int l;  // 파티에 오는 사람의 수
+        int l;   // 각 파티에 오는 사람의 수
         cin >> l;
-        int num1;
-        cin >> num1;  // 파티 맨앞사람
-        party[i] = num1;
-        for (int j = 1; j < l; j++) {
-            int num;
+        int num;
+        cin >> num;
+        party[i] = num; // 파티의 대표자
+        for(int j = 1; j < l; j++) {
             cin >> num;
-            Union(num1, num, root);
+            Union(party[i], num, root);
         }
     }
 
-    // 파티의 파티원이 진실을 아는사람 또는 진실을 아는사람과 같은 파티 소속일경우 result--
-    for (int i = 0; i < m; i++) {
-        for (int j : known)
-            if (Find(party[i], root) == Find(j, root)) {
+    // 해당 파티가 거짓말을 할 수 없다면 result--
+    for(int i = 0; i < m; i++) {
+        for(int j = 0; j < k; j++) {
+            if(Find(party[i], root) == Find(known[j], root)) {
                 result--;
                 break;
             }
+        }
     }
-
     return result;
 }
 
