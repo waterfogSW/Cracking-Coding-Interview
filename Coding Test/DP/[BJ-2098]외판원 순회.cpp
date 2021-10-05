@@ -13,7 +13,7 @@ int TSP(int n, int c, int visit, vector2 &dp, vector2 &road) {
     visit |= (1 << c);  // 현재 도시(c) 방문 확인
 
     if (visit == (1 << n) - 1) {  // 모든 도시에 방문했을 경우
-        if (road[c][0] != 0)      // 출발도시(0)로 되돌아가지 못 할 경우
+        if (road[c][0] != 0)      // 출발도시(0)로 되돌아 갈 수 있을경우
             return road[c][0];
         else
             return MAX;
