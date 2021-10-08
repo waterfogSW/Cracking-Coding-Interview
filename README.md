@@ -24,4 +24,3 @@
 - Java Spring Framework, JPA/Hibernate
 - Git, Docker, Kubernetes + Istio
 - Kafka, Elastic, influxData, Grafana, Redis
-- RocksDB(Object Storage) with Go lang
