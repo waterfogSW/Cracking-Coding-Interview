@@ -20,8 +20,6 @@
 - Greedy
 
 ## Tech Stack 
-- Microservice Architecture
 - Java Spring Framework, JPA/Hibernate
-- Git, Docker, Kubernetes + Istio
+- Git, Docker, Kubernetes
 - Kafka, Elastic, influxData, Grafana, Redis
-- RocksDB(Object Storage) with Go lang
