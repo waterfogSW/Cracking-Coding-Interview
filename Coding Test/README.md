@@ -130,11 +130,42 @@ static int binarySearch(int[] arr, int n, int target) {
 
 ### Lower bound
 
+Lower bound는 찾고자 하는 값 이상이 처음 나타나는 위치.
+-  target원소가 없거나 여러개 이더라도 상관 없다.
 
-
+```cpp
+int lowerBound(vector<int> &arr, int target) {
+    int start = 0, end = arr.size() - 1;
+    while (start < end) {
+        int mid = (start + end) / 2;
+        if (arr[mid] >= target)
+            end = mid;
+        else
+            start = mid + 1;
+    }
+    return end;
+}
+```
 ### Upper bound
 
+Upper bound는 찾고자 하는 값 초과가 처음 나타나는 위치.
+
+```cpp
+int upperBound(vector<int> &arr, int target) {
+    int start = 0, end = arr.size() - 1;
+    while (start < end) {
+        int mid = (start + end) / 2;
+        if (arr[mid] > target)
+            end = mid;
+        else
+            start = mid + 1;
+    }
+}
+```
+
 ## Dijkstra
+
+
 ## Union Find
 ## Topological sorting(위상정렬)
 ## Spanning Tree
