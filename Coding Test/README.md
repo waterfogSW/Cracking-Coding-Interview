@@ -1,4 +1,5 @@
 ## Quick Sort
+**CPP**
 ```cpp
 void swap(int *a, int *b) {
     int t = *a;
@@ -22,6 +23,35 @@ int partition(int arr[], int low, int high) {
 void quickSort(int arr[], int low, int high) {
     if(low < high) {
         int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+```
+
+**java**
+```java
+static void swap(int[] arr, int i, int j) {
+    int t = arr[i];
+    arr[i] = arr[j];
+    arr[j] = t;
+}
+
+static int partition(int[] arr, int low, int high) {
+    int pivot = arr[high];
+    int i = low - 1;
+    for(int j = low; j < high; j++) {
+        if(arr[j] <= pivot) {
+            i++;
+            swap(arr, i, j);
+        }
+    }
+    swap(arr, i + 1, high);
+}
+
+static int quickSort(int[] arr, int low, int high) {
+    if(low < high) {
+        int pi = partition(arr, low, pi - 1);
         quickSort(arr, low, pi - 1);
         quickSort(arr, pi + 1, high);
     }
@@ -68,38 +98,41 @@ Now 70 is at its correct place. All elements smaller than
 it.
 ```
 
-```java
-static void swap(int[] arr, int i, int j) {
-    int t = arr[i];
-    arr[i] = arr[j];
-    arr[j] = t;
-}
-
-static int partition(int[] arr, int low, int high) {
-    int pivot = arr[high];
-    int i = low - 1;
-    for(int j = low; j < high; j++) {
-        if(arr[j] <= pivot) {
-            i++;
-            swap(arr, i, j);
-        }
-    }
-    swap(arr, i + 1, high);
-}
-
-static int quickSort(int[] arr, int low, int high) {
-    if(low < high) {
-        int pi = partition(arr, low, pi - 1);
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
-    }
-}
-
-```
-
 ## Binary Search(Lower bound, Upper bound)
 
+### Binary Search
 
+**CPP**
+```cpp
+int binarySearch(vector<int> &arr, int target) {
+    int start = 0, end = arr.size();
+    while(start <= end) {
+        int mid = (start + end) / 2;
+        if(arr[mid] == target) return mid;
+        else if(arr[mid] < target) start = mid + 1;
+        else end = mid - 1;
+    }
+}
+```
+
+**java**
+```java
+static int binarySearch(int[] arr, int n, int target) {
+    int start = 0, end = n;
+    while(start <= end) {
+        int mid = (start + end) / 2;
+        if(arr[mid] < target) start = mid + 1;
+        else if(arr[mid] > target) end = mid - 1;
+        else return mid;
+    }
+    return -1;
+```
+
+### Lower bound
+
+
+
+### Upper bound
 
 ## Dijkstra
 ## Union Find
