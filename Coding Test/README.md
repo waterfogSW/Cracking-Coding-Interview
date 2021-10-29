@@ -165,6 +165,41 @@ int upperBound(vector<int> &arr, int target) {
 
 ## Dijkstra
 
+```cpp
+int Dijkstra(int v, int e,int start, int end) {
+    int* dist = new int[v + 1];
+    for(int i = 1; i <= v; i++) dist[i] = INT_MAX;
+    dist[start] = 0;
+
+    vector<pair<int, int>> graph[v + 1];
+    for(int i = 0; i < e; i++) {
+        int t1, t2, cost;
+        cin >> t1 >> t2 >> cost;
+        graph[t1].push_back({t2, cost});
+    }
+
+    priority_queue<pair<int, int>> pq;
+    pq.push({0, start});
+    while(!pq.empty()) {
+        int cur = pq.top().second;
+        int distance = -pq.top().first;
+        pq.pop();
+
+        if(dist[cur] < distance) continue;
+        for(int i = 0; i < graph[cur].size(); i++) {
+            int next = graph[cur][i].first;
+            int nextDist = graph[cur][i].second;
+
+            if(dist[next] > distance + nextDist) {
+                dist[next] = distance + nextDist;
+                pq.push({-dist[next], next});
+            }
+        }
+    }
+
+    return dist[end];
+}
+```
 
 ## Union Find
 ## Topological sorting(위상정렬)
