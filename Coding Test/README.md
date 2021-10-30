@@ -201,6 +201,33 @@ int Dijkstra(int v, int e,int start, int end) {
 }
 ```
 
+Java
+```java
+    static int Dijkstra(int start, int end) {
+        PriorityQueue<Edge> pq = new PriorityQueue<>();
+        pq.add(new Edge(start, 0));
+
+        while(!pq.isEmpty()) {
+            Edge e = pq.poll();
+            int cur = e.dest;
+            int curDist = e.cost;
+
+            if(curDist > dist[cur]) continue;
+            for(Edge i : graph[cur]) {
+                int next = i.dest;
+                int nextDist = i.cost;
+
+                if(dist[next] > curDist + nextDist) {
+                    dist[next] = curDist + nextDist;
+                    pq.add(new Edge(next, dist[next]));
+                }
+            }
+        }
+
+        return dist[end];
+    }
+```
+
 ## Union Find
 ## Topological sorting(위상정렬)
 ## Spanning Tree
