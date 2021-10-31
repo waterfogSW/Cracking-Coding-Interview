@@ -232,6 +232,64 @@ Java
 ## Topological sorting(위상정렬)
 ## Spanning Tree
 ## Segment Tree
+
+**CPP**
+```cpp
+int a[MAX];
+int tree[MAX * 4]; // Four times can cover all ranges of the array.
+
+// start : start index, end : end index
+int init(int start, int end, int node) {
+    if (start == end) return tree[node] = a[start];
+    int mid = (start + end) / 2;
+    return tree[node] = init(start, mid, node * 2) +
+                        init(mid + 1, end, node * 2 + 1);
+}
+
+// start : start index, end : end index
+// left, right : Range that want to find out the sum of
+int sum(int start, int end, int node, int left, int right) {
+    // Out of range
+    if (left > end || right < start) return 0;
+    // Within range
+    if (left <= start && end <= right) return tree[node];
+    // If not, divide it into two parts and find the sum.
+    int mid = (start + end) / 2;
+    return sum(start, mid, node * 2, left, right) +
+           sum(mid + 1, end, node * 2 + 1, left, right);
+}
+
+//diff 만큼 업데이트
+void update(int start, int end, int node, int index, int dif) {
+    // out of range
+    if (index < start || index > end) return;
+    // renew sub tree
+    tree[node] += dif;
+    if (start == end) return;
+    int mid = (start + end) / 2;
+    update(start, mid, node * 2, index, dif);
+    update(mid + 1, end, node * 2 + 1, index, dif);
+}
+
+int main() {
+    int n = 5;
+    a[0] = 1;
+    a[1] = 2;
+    a[2] = 3;
+    a[3] = 4;
+    a[4] = 5;
+
+    init(0, n - 1, 1);
+
+    cout << "0~2 구간합 : " << sum(0, n - 1, 1, 0, 2) << '\n';
+    cout << "2~4 구간합 : " << sum(0, n - 1, 1, 2, 4) << '\n';
+
+    // 3번째 원소 업데이트 
+    update(0, n - 1, 1, 2, 7);
+    cout << "0~2 구간합 : " << sum(0, n - 1, 1, 0, 2) << '\n';
+    cout << "2~4 구간합 : " << sum(0, n - 1, 1, 2, 4) << '\n';
+}
+```
 ## Knapsack Algorithm
 ## LCS
 ## LIS
