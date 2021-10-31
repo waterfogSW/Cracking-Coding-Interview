@@ -235,6 +235,8 @@ Java
 
 **CPP**
 ```cpp
+#define MAX 10000
+
 int a[MAX];
 int tree[MAX * 4]; // Four times can cover all ranges of the array.
 
@@ -259,16 +261,13 @@ int sum(int start, int end, int node, int left, int right) {
            sum(mid + 1, end, node * 2 + 1, left, right);
 }
 
-//diff 만큼 업데이트
-void update(int start, int end, int node, int index, int dif) {
-    // out of range
-    if (index < start || index > end) return;
-    // renew sub tree
-    tree[node] += dif;
-    if (start == end) return;
-    int mid = (start + end) / 2;
-    update(start, mid, node * 2, index, dif);
-    update(mid + 1, end, node * 2 + 1, index, dif);
+int update(int start, int end, int node, int index, int val) {
+	if (index < start || end < index) return tree[node];
+	if (start == end) return tree[node] = val;
+
+	int mid = (start + end) / 2;
+	return tree[node] = update(start, mid, node * 2, index, val) + 
+                        update(mid + 1, end, node * 2 + 1, index, val);
 }
 
 int main() {
