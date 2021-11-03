@@ -289,6 +289,66 @@ int main() {
     cout << "2~4 구간합 : " << sum(0, n - 1, 1, 2, 4) << '\n';
 }
 ```
+
+## Indexed Tree(Fenwick Tree)
+```cpp
+#include <iostream>
+using namespace std;
+
+typedef long long ll;
+
+void swap(int *b, int *c) {
+    int temp = *b;
+    *b = *c;
+    *c = temp;
+}
+
+void update(int i, int dif, int n, ll *tree) {
+    while (i <= n + 1) {
+        tree[i] += dif;
+        i += (i & -i);
+    }
+}
+
+ll sum(int i, ll *tree) {
+    ll result = 0;
+    while (i > 0) {
+        result += tree[i];
+        i -= (i & -i);
+    }
+    return result;
+}
+
+ll getSection(int start, int end, ll *tree) {
+    return sum(end, tree) - sum(start - 1, tree);
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int n, m;
+    cin >> n >> m;
+
+    ll *arr = new ll[n + 1]();
+    ll *tree = new ll[n + 1]();
+
+    int a, b, c;
+    for (int i = 0; i < m; i++) {
+        cin >> a >> b >> c;
+
+        if (a == 0) {
+            if (b > c) swap(b, c);
+            cout << getSection(b, c, tree) << '\n';
+        } else {
+            ll temp = c - arr[b];
+            arr[b] = c;
+            update(b, temp, n, tree);
+        }
+    }
+}
+```
 ## Knapsack Algorithm
 ## LCS
 ## LIS
