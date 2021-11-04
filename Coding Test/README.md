@@ -230,10 +230,34 @@ Java
 
 ## Union Find(Disjoint Set)
 
-
-
 ## Topological sorting(위상정렬)
-## Spanning Tree
+
+```cpp
+void topologySort(int n, int *inDegree, vector<int> *graph) {
+    int result[n];
+    queue<int> q;
+    for (int i = 0; i < n; i++) {
+        if (inDegree[i] == 0) q.push(i);
+    }
+
+    for (int i = 0; i < n; i++) {
+        int x = q.front();
+        q.pop();
+        result[i] = x;
+        for(int i = 0; i < graph[x].size(); i++) {
+            int y = graph[x][i];
+            if(--inDegree[y] == 0)
+                q.push(y);
+        }
+    }
+
+    for (int i = 0; i < n; i++) {
+        cout << result[i] << ' ';
+    }
+    cout << '\n';
+}
+```
+
 ## Segment Tree
 
 **CPP**
