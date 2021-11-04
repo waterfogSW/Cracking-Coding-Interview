@@ -228,7 +228,10 @@ Java
     }
 ```
 
-## Union Find
+## Union Find(Disjoint Set)
+
+
+
 ## Topological sorting(위상정렬)
 ## Spanning Tree
 ## Segment Tree
