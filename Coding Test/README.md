@@ -235,6 +235,123 @@ Java
 ## Topological sorting(위상정렬)
 ## Spanning Tree
 ## Segment Tree
+
+**CPP**
+```cpp
+#define MAX 10000
+
+int a[MAX];
+int tree[MAX * 4]; // Four times can cover all ranges of the array.
+
+// start : start index, end : end index
+int init(int start, int end, int node) {
+    if (start == end) return tree[node] = a[start];
+    int mid = (start + end) / 2;
+    return tree[node] = init(start, mid, node * 2) +
+                        init(mid + 1, end, node * 2 + 1);
+}
+
+// start : start index, end : end index
+// left, right : Range that want to find out the sum of
+int sum(int start, int end, int node, int left, int right) {
+    // Out of range
+    if (left > end || right < start) return 0;
+    // Within range
+    if (left <= start && end <= right) return tree[node];
+    // If not, divide it into two parts and find the sum.
+    int mid = (start + end) / 2;
+    return sum(start, mid, node * 2, left, right) +
+           sum(mid + 1, end, node * 2 + 1, left, right);
+}
+
+int update(int start, int end, int node, int index, int val) {
+	if (index < start || end < index) return tree[node];
+	if (start == end) return tree[node] = val;
+
+	int mid = (start + end) / 2;
+	return tree[node] = update(start, mid, node * 2, index, val) + 
+                        update(mid + 1, end, node * 2 + 1, index, val);
+}
+
+int main() {
+    int n = 5;
+    a[0] = 1;
+    a[1] = 2;
+    a[2] = 3;
+    a[3] = 4;
+    a[4] = 5;
+
+    init(0, n - 1, 1);
+
+    cout << "0~2 구간합 : " << sum(0, n - 1, 1, 0, 2) << '\n';
+    cout << "2~4 구간합 : " << sum(0, n - 1, 1, 2, 4) << '\n';
+
+    // 3번째 원소 업데이트 
+    update(0, n - 1, 1, 2, 7);
+    cout << "0~2 구간합 : " << sum(0, n - 1, 1, 0, 2) << '\n';
+    cout << "2~4 구간합 : " << sum(0, n - 1, 1, 2, 4) << '\n';
+}
+```
+
+## Indexed Tree(Fenwick Tree)
+```cpp
+#include <iostream>
+using namespace std;
+
+typedef long long ll;
+
+void swap(int *b, int *c) {
+    int temp = *b;
+    *b = *c;
+    *c = temp;
+}
+
+void update(int i, int dif, int n, ll *tree) {
+    while (i <= n + 1) {
+        tree[i] += dif;
+        i += (i & -i);
+    }
+}
+
+ll sum(int i, ll *tree) {
+    ll result = 0;
+    while (i > 0) {
+        result += tree[i];
+        i -= (i & -i);
+    }
+    return result;
+}
+
+ll getSection(int start, int end, ll *tree) {
+    return sum(end, tree) - sum(start - 1, tree);
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int n, m;
+    cin >> n >> m;
+
+    ll *arr = new ll[n + 1]();
+    ll *tree = new ll[n + 1]();
+
+    int a, b, c;
+    for (int i = 0; i < m; i++) {
+        cin >> a >> b >> c;
+
+        if (a == 0) {
+            if (b > c) swap(b, c);
+            cout << getSection(b, c, tree) << '\n';
+        } else {
+            ll temp = c - arr[b];
+            arr[b] = c;
+            update(b, temp, n, tree);
+        }
+    }
+}
+```
 ## Knapsack Algorithm
 ## LCS
 ## LIS
