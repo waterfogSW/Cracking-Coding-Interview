@@ -230,6 +230,45 @@ Java
 
 ## Union Find(Disjoint Set)
 
+```cpp
+int *root; // root = new int[n];
+
+int Find(int a) {
+    if(root[a] == a) return a;
+    else return root[a] = Find(root[a]);
+}
+
+void Union(int a, int b) {
+    a = Find(a);
+    b = Find(b);
+    root[b] = a;
+}
+
+int solution(vector<vector<int>> &costs) {
+    int answer = 0;
+    priority_queue<tuple<int, int, int>> pq;
+    
+    for(vector<int> cost : costs) {
+        pq.push({-cost[2], cost[0], cost[1]});
+    }
+
+    while(!pq.empty()) {
+        int w = -get<0>(pq.top());
+        int a = get<1>(pq.top());
+        int b = get<2>(pq.top());
+        pq.pop();
+        // a와 b가 같은 그래프에 속해있지 않으면
+        // (조상이 같지 않으면)
+        if(Find(a) != Find(b)) {
+            Union(a, b);
+            answer += w;
+        }
+    }
+
+    return answer
+}
+```
+
 ## Topological sorting(위상정렬)
 
 ```cpp
