@@ -283,3 +283,28 @@
   - 웹 클라이언트 AJAX 통신
   - Content-Type : application/json 을 주로 사용
     - TEXT, JSON, XML을 주로 사용
+
+## HTTP API 설계 예시
+
+**POST 기반 자원 등록**
+- 클라이언트는 등록될 리소스의 URI를 알 수 없다.
+- 서버가 등록될 리소스의 URI를 생성한다.
+- 컬렉션
+  - 서버가 관리하는 리소스 디렉토리
+- 대부분 POST기반의 자원등록을 사용
+
+**PUT 기반 자원 등록**
+- 클라이언트는 등록될 리소스의 URI를 알고 있어야 한다.
+- 클라이언트가 직접 리소스의 URI를 결정한다
+- 스토어
+  - 클라이언트가 관리하는 리소스 저장소
+  - 클라이언트가 리소스의 URI를 알고 관리
+
+**HTML FORM 설계**
+- HTML FORM 은 GET, POST만을 지원하므로 제약이 있다.
+- 따라서 동사로 된 리소스 경로, 컨트롤 URI를 사용한다
+  - /new, /edit, /delete 
+  - http 메서드로만 해결하기 애매한 경우에 컨트롤 uri를 사용하며, 실무에서 많이 활용한다.
+
+**API설계 Best Prcatice**
+http://restfulapi.net/resource-naming
