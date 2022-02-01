@@ -347,3 +347,36 @@ http://restfulapi.net/resource-naming
   - 503 : 서버 일시적으로 과부하, 또는 예정된 작업으로 처리할 수 없음.
   - 5xx오류는 서버에 오류가 생긴경우에만 발생시켜야 한다. 비즈니스 로직상의 문제로 5xx에러를 발생시키면 안된다.
 
+## HTTP 헤더
+
+- Http 전송에 필요한 모든 부가 정보
+- 표준헤더가 너무 많음
+- 필요시 임의의 헤더 추가 가능
+
+**분류**
+- General Header : 메시지 전체에 적용되는 정보
+- Request Header : 요청 정보
+- Response Header : 응답 정보
+- Represetation Header : 표현 데이터를 해석할 수 있는 정보
+  - 메시지 바디를 통해 표현 데이터가 전송
+  - 표현 : 요청이나 응답에서 전달할 실제 데이터
+  - 표현 헤더 : 데이터 유형(json, html), 데이터 길이, 압축 정보
+
+
+### 표현
+
+- Content-Type : 표현 데이터 형식
+  - 문자 인코딩, 미디어 타입
+  - text/html;charset=UTF-8
+- Content-Encoding : 표현 데이터 압축 형식
+  - 표현 데이터 인코딩
+  - gzip, deflate, identity
+  - 데이터를 읽는쪽에서 인코딩 헤더의 정보로 압축 해제
+- Content-Language : 표현 데이터 언어
+  - 표현 데이터의 자연 언어를 표현
+  - ko, en, en-us
+- Content-Length : 표현 데이터의 길이
+  - 바이트 단위
+  - Transfer Encoding을 사용하면 Content-Length를 사용하면 안됨
+
+### 협상
